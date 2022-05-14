@@ -12,7 +12,8 @@
 <body>
   <div id="header">
     <p id="logo">ramenGO!</p>
-    <div class="wrapper">
+
+    <div class="header-content">
       <div id="illustration">
         <div id="background-circle"></div>
         <img id="delivery-girl" src="/images/header/entregadora.png" alt="delivery girl" />
@@ -30,6 +31,66 @@
       </div>
     </div>
   </div>
+
+  <div id="main-content">
+    <h2>First things first: select your favorite broth.</h2>
+    <p id="main-description">It will give the whole flavor on your ramen soup. </p>
+
+    <div class="carousel">
+      <div id="cards" class="cards" onscroll="handlePosition()">
+
+        <div class="card">
+          <img src="/images/icons/salt/inactive.svg" />
+          <p class="item-name">Salt</p>
+          <p class="item-description">Simple like the seawater, nothing more</p>
+          <p class="item-price">US$ 10</p>
+        </div>
+
+        <div class="card">
+          <img src="/images/icons/shoyu/inactive.svg" />
+          <p class="item-name">Shoyu</p>
+          <p class="item-description">The good old and traditional soy sauce</p>
+          <p class="item-price">US$ 10</p>
+        </div>
+
+        <div class="card">
+          <img src="/images/icons/miso/inactive.svg" />
+          <p class="item-name">Miso</p>
+          <p class="item-description">Paste made of fermented soybeans</p>
+          <p class="item-price">US$ 12</p>
+        </div>
+
+      </div>
+      <div class="indicator">
+        <span id="indicator-1" class="item-indicator selected"></span>
+        <span id="indicator-2" class="item-indicator"></span>
+        <span id="indicator-3" class="item-indicator"></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function handlePosition() {
+      const cardsElement = document.getElementById('cards')
+      const winScroll = cardsElement.scrollLeft
+      const width = cardsElement.scrollWidth - document.documentElement.clientWidth
+      const scrolled = Math.round((winScroll / width) * 100)
+
+      if(scrolled <= 35.33) {
+        document.getElementById('indicator-1').classList.add('selected')
+        document.getElementById('indicator-2').classList.remove('selected')
+        document.getElementById('indicator-3').classList.remove('selected')
+      } else if(scrolled <= 88.32) {
+        document.getElementById('indicator-2').classList.add('selected')
+        document.getElementById('indicator-1').classList.remove('selected')
+        document.getElementById('indicator-3').classList.remove('selected')
+      } else {
+        document.getElementById('indicator-3').classList.add('selected')
+        document.getElementById('indicator-1').classList.remove('selected')
+        document.getElementById('indicator-2').classList.remove('selected')
+      }
+    }
+  </script>
 </body>
 
 </html>
