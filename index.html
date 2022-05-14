@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <title>Front End Test - Ramen GO</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./index.scss" />
-  </head>
 
-  <body>
-		<img src="images/header/entregadora.svg" alt="RamenGO" />
-		<h1>Um bom teste para você :D</h1>
-  </body>
+<head>
+  <title>Front End Test - Ramen GO</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./index.scss" />
+</head>
+
+<body>
+  <div id="header">
+    <p id="logo">ramenGO!</p>
+    <div class="wrapper">
+      <div id="illustration">
+        <div id="background-circle"></div>
+        <img id="delivery-girl" src="/images/header/entregadora.png" alt="delivery girl" />
+      </div>
+      <div id="header-text-container">
+        <div id="cta-container">
+          <p id="katakana">ラーメン</p>
+          <p id="go">GO!</p>
+        </div>
+        <p class="description">
+          Enjoy a good ramen in the comfort of your house. Create your own ramen and choose your favorite flavour
+          combination!
+        </p>
+        <button type="button" id="btn-order">order now</button>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
