@@ -39,22 +39,25 @@
     <div class="carousel">
       <div id="cards-1" class="cards" onscroll="handlePosition('cards-1')">
 
-        <div class="card">
-          <img src="/images/icons/salt/inactive.svg" />
+        <div class="cards-1 card" onclick="">
+          <img class="inactive-icon" src="/images/icons/salt/inactive.svg" alt="salt inactive" />
+          <img class="active-icon" src="/images/icons/salt/active.svg" alt="salt active">
           <p class="item-name">Salt</p>
           <p class="item-description">Simple like the seawater, nothing more</p>
           <p class="item-price">US$ 10</p>
         </div>
 
-        <div class="card">
-          <img src="/images/icons/shoyu/inactive.svg" />
+        <div class="cards-1 card">
+          <img class="inactive-icon" src="/images/icons/shoyu/inactive.svg" alt="shoyu inactive" />
+          <img class="active-icon" src="/images/icons/shoyu/active.svg" alt="shoyu inactive" />
           <p class="item-name">Shoyu</p>
           <p class="item-description">The good old and traditional soy sauce</p>
           <p class="item-price">US$ 10</p>
         </div>
 
-        <div class="card">
-          <img src="/images/icons/miso/inactive.svg" />
+        <div class="cards-1 card">
+          <img class="inactive-icon" src="/images/icons/miso/inactive.svg" alt="miso inactive" />
+          <img class="active-icon" src="/images/icons/miso/active.svg" alt="miso inactive" />
           <p class="item-name">Miso</p>
           <p class="item-description">Paste made of fermented soybeans</p>
           <p class="item-price">US$ 12</p>
@@ -74,22 +77,25 @@
     <div class="carousel">
       <div id="cards-2" class="cards" onscroll="handlePosition('cards-2')">
 
-        <div class="card">
-          <img src="/images/icons/pork/inactive.svg" />
+        <div class="cards-2 card">
+          <img class="inactive-icon" src="/images/icons/pork/inactive.svg" alt="pork inactive" />
+          <img class="active-icon" src="/images/icons/pork/active.svg" alt="pork inactive" />
           <p class="item-name">Chasu</p>
           <p class="item-description">A sliced flavourful pork meat with a selection of season vegetables.</p>
           <p class="item-price">US$ 10</p>
         </div>
 
-        <div class="card">
-          <img src="/images/icons/yasai/inactive.svg" />
+        <div class="cards-2 card">
+          <img class="inactive-icon" src="/images/icons/yasai/inactive.svg" alt="yasai inactive" />
+          <img class="active-icon" src="/images/icons/yasai/active.svg" alt="yasai inactive" />
           <p class="item-name">Yasai Vegetarian</p>
           <p class="item-description">A delicious vegetarian lamen with a selection of season vegetables.</p>
           <p class="item-price">US$ 10</p>
         </div>
 
-        <div class="card">
-          <img src="/images/icons/chicken/inactive.svg" />
+        <div class="cards-2 card">
+          <img class="inactive-icon" src="/images/icons/chicken/inactive.svg" alt="chicken inactive" />
+          <img class="active-icon" src="/images/icons/chicken/active.svg" alt="chicken inactive" />
           <p class="item-name">Karaague</p>
           <p class="item-description">Three units of fried chicken, moyashi, ajitama egg and other vegetables.</p>
           <p class="item-price">US$ 12</p>
@@ -102,11 +108,117 @@
         <span id="cards-2-indicator-3" class="item-indicator"></span>
       </div>
 
-      <button type="button" id="btn-place-order">place my order</button>
+      <button type="button" id="btn-place-order" disabled>place my order</button>
     </div>
   </div>
 
   <script>
+    const selection = {
+      broth: '',
+      meat: '',
+    }
+
+    function submitOrder() {
+      fetch(`https://front-br-challenges.web.app/api/v1/ramen-go/?meat=${selection.meat.toLowerCase().replace(' ', '_')}&broth=${selection.broth.toLowerCase().replace(' ', '_')}`)
+        .then(res => res.json())
+        .then(res => {
+          console.log(res.data)
+        })
+    }
+
+    function checkSelection() {
+      if (selection.broth !== '' && selection.meat !== '') {
+        console.log(selection)
+        const btn = document.getElementById('btn-place-order')
+        btn.disabled = false
+        btn.onclick = submitOrder
+      }
+    }
+
+    //session 1 cards behaviour
+    const cards1 = document.querySelectorAll('.cards-1')
+
+    cards1[0].addEventListener('click', () => {
+      cards1[0].classList.add('selected')
+      cards1[1].classList.remove('selected')
+      cards1[2].classList.remove('selected')
+
+      selection.broth = cards1[0].querySelector('.item-name').textContent
+
+      document.getElementById('cards-2').scroll({ left: 0, behavior: 'smooth' })
+      checkSelection()
+    })
+
+    cards1[1].addEventListener('click', () => {
+      cards1[1].classList.add('selected')
+      cards1[0].classList.remove('selected')
+      cards1[2].classList.remove('selected')
+
+      const element = document.getElementById('cards-1')
+      const width = element.scrollWidth - document.documentElement.clientWidth
+
+      selection.broth = cards1[1].querySelector('.item-name').textContent
+
+      element.scroll({ left: width / 2, behavior: 'smooth' })
+      checkSelection()
+    })
+
+    cards1[2].addEventListener('click', () => {
+      cards1[2].classList.add('selected')
+      cards1[1].classList.remove('selected')
+      cards1[0].classList.remove('selected')
+
+      const element = document.getElementById('cards-1')
+      const width = element.scrollWidth - document.documentElement.clientWidth
+
+      selection.broth = cards1[2].querySelector('.item-name').textContent
+
+      element.scroll({ left: width, behavior: 'smooth' })
+      checkSelection()
+    })
+
+    //session 2 cards behaviour
+    const cards2 = document.querySelectorAll('.cards-2')
+
+    cards2[0].addEventListener('click', () => {
+      cards2[0].classList.add('selected')
+      cards2[1].classList.remove('selected')
+      cards2[2].classList.remove('selected')
+
+      selection.meat = cards2[0].querySelector('.item-name').textContent
+
+      document.getElementById('cards-2').scroll({ left: 0, behavior: 'smooth' })
+      checkSelection()
+    })
+
+    cards2[1].addEventListener('click', () => {
+      cards2[1].classList.add('selected')
+      cards2[0].classList.remove('selected')
+      cards2[2].classList.remove('selected')
+
+      const element = document.getElementById('cards-2')
+      const width = element.scrollWidth - document.documentElement.clientWidth
+
+      selection.meat = cards2[1].querySelector('.item-name').textContent
+
+      element.scroll({ left: width / 2, behavior: 'smooth' })
+      checkSelection()
+    })
+
+    cards2[2].addEventListener('click', () => {
+      cards2[2].classList.add('selected')
+      cards2[1].classList.remove('selected')
+      cards2[0].classList.remove('selected')
+
+      const element = document.getElementById('cards-2')
+      const width = element.scrollWidth - document.documentElement.clientWidth
+
+      selection.meat = cards2[2].querySelector('.item-name').textContent
+
+      element.scroll({ left: width, behavior: 'smooth' })
+      checkSelection()
+    })
+
     function handlePosition(id) {
       const cardsElement = document.getElementById(id)
       const winScroll = cardsElement.scrollLeft
