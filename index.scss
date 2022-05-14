@@ -49,7 +49,7 @@ body {
 	}
 
 	.header-content {
-		width: 100vw;
+		width: 100%;
 
 		@media (min-width: 846px) {
 			display: flex;
@@ -108,24 +108,18 @@ body {
 			@media (min-width: 846px) {
 				width: 36.688rem;
 				height: 36.688rem;
-				//margin-right: 300px;
-				//margin-left: calc(50% - 18rem);
 			}
 		}
 
 		#delivery-girl {
 			max-height: 16.813rem;
 
-			//position: absolute;
-			//margin-left: auto;
-			//margin-right: auto;
 			left: 0;
 			right: 0;
 			z-index: 1;
 
 			@media (min-width: 846px) {
 				max-height: 42.688rem;
-				//margin-right: 263px;
 			}
 		}
 	}
@@ -156,7 +150,6 @@ body {
 				color: var(--yellow);
 				font-size: 48px;
 				font-weight: 900;
-				//font-family: 'M PLUS Rounded 1c';
 
 				@media (min-width: 846px) {
 					flex-direction: row;
@@ -173,7 +166,6 @@ body {
 				color: var(--white);
 				font-size: 100px;
 				font-weight: 900;
-				//font-family: 'M PLUS Rounded 1c';
 
 				@media (min-width: 846px) {
 					font-size: 155px;
@@ -234,7 +226,6 @@ body {
 	}
 
 	h2 {
-		//font-family: 'M PLUS Rounded 1c';
 		font-weight: 900;
 		text-align: center;
 
@@ -249,7 +240,6 @@ body {
 	}
 
 	.session-description {
-		//font-family: 'M PLUS Rounded 1c';
 		text-align: center;
 		padding: 0 16px;
 		margin-bottom: 32px;
