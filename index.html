@@ -30,13 +30,13 @@
           Enjoy a good ramen in the comfort of your house. Create your own ramen and choose your favorite flavour
           combination!
         </p>
-        <button type="button" id="btn-order">order now</button>
+        <button type="button" id="btn-order" onclick="scrollToSession()">order now</button>
       </div>
     </div>
   </div>
 
   <div id="main-content">
-    <h2>First things first: select your favorite broth.</h2>
+    <h2  id="broth-session-title">First things first: select your favorite broth.</h2>
     <p class="session-description">It will give the whole flavor on your ramen soup. </p>
 
     <div class="carousel">
@@ -74,7 +74,7 @@
       </div>
     </div>
 
-    <h2>It’s time to choose (or not) your meat!</h2>
+    <h2 id="meat-session-title">It’s time to choose (or not) your meat!</h2>
     <p class="session-description">Some people love, some don’t. We have options for all tastes.</p>
 
     <div class="carousel">
@@ -128,8 +128,21 @@
           console.log(res.data)
         })
     }
+    function scrollToSession() {
+      let destiny
+
+      if (selection.broth !== '') {
+        destiny = document.getElementById('meat-session-title')
+      } else {
+        destiny = document.getElementById('broth-session-title')
+      }
+
+      destiny.scrollIntoView({ behavior: 'smooth' })
+    }
 
     function checkSelection() {
+      scrollToSession()
+
       if (selection.broth !== '' && selection.meat !== '') {
         console.log(selection)
         const btn = document.getElementById('btn-place-order')

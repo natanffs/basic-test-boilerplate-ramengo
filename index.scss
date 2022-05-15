@@ -24,8 +24,18 @@
 body {
 	font-family: 'M PLUS Rounded 1c';
 	background-color: var(--white);
-
 	overflow-x: hidden;
+}
+
+button {
+	border: none;
+	border-radius: 50px;
+	padding: 20px 16px;
+	cursor: pointer;
+
+	&:not([disabled]):hover {
+		background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
+	}
 }
 
 #header {
@@ -67,6 +77,8 @@ body {
 		letter-spacing: 3px;
 		color: var(--yellow);
 		margin-bottom: 24px;
+		z-index: 1;
+		cursor: pointer;
 
 		@media (min-width: 846px) {
 			position: absolute;
@@ -227,13 +239,9 @@ body {
 
 			text-transform: uppercase;
 			background-color: var(--blue);
-			border-radius: 50px;
-			padding: 20px 16px;
-			border: none;
 			color: var(--white);
 			margin-top: 24px;
 			font-weight: bold;
-			cursor: pointer;
 			text-align: left;
 
 			@media (min-width: 846px) {
@@ -241,7 +249,7 @@ body {
 			}
 
 			&:after {
-				content: '🡢';
+				content: '\1F862';
 				font-size: 15px;
 				color: var(--yellow)
 			}
@@ -409,15 +417,11 @@ body {
 		align-items: center;
 
 		text-transform: uppercase;
-		border-radius: 50px;
-		padding: 20px 16px;
-		border: none;
 		margin-top: 48px;
 		margin-left: auto;
 		margin-right: auto;
 		margin-bottom: 10px;
 		font-weight: bold;
-		cursor: pointer;
 		text-align: left;
 
 		background-color: var(--blue);
@@ -428,7 +432,7 @@ body {
 		}
 
 		&:after {
-			content: '🡢';
+			content: '\1F862';
 			font-size: 15px;
 		}
 
