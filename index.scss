@@ -105,6 +105,8 @@ body {
 			left: 0;
 			right: 0;
 
+			display: flex;
+
 			@media (min-width: 846px) {
 				width: 36.688rem;
 				height: 36.688rem;
@@ -120,6 +122,35 @@ body {
 
 			@media (min-width: 846px) {
 				max-height: 42.688rem;
+			}
+		}
+
+		#yellow-balloon {
+			max-height: 5.957rem;
+
+			position: absolute;
+			z-index: 2;
+			top: 35%;
+			right: -20px;
+
+			@media (min-width: 846px) {
+				max-height: 15.125rem;
+				right: -50px;
+			}
+		}
+
+		#blue-balloon {
+			max-height: 3.176rem;
+
+			position: absolute;
+			z-index: 2;
+			top: -15px;
+			left: -20px;
+
+			@media (min-width: 846px) {
+				max-height: 12rem;
+				top: -35px;
+				left: -30px;
 			}
 		}
 	}
