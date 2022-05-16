@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./index.scss" />
+  <link rel="stylesheet" href="index.scss" />
   <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png">
@@ -34,7 +34,7 @@
           Enjoy a good ramen in the comfort of your house. Create your own ramen and choose your favorite flavour
           combination!
         </p>
-        <button type="button" id="btn-order" onclick="scrollToSession()">order now</button>
+        <button type="button" id="btn-order">order now</button>
       </div>
     </div>
   </header>
@@ -44,7 +44,7 @@
     <p class="session-description">It will give the whole flavor on your ramen soup. </p>
 
     <div class="carousel">
-      <div id="cards-1" class="cards" onscroll="handlePosition('cards-1')">
+      <div id="cards-1" class="cards">
 
         <div class="cards-1 card" onclick="">
           <img class="inactive-icon" src="../images/icons/salt/inactive.svg" alt="salt inactive" />
@@ -82,7 +82,7 @@
     <p class="session-description">Some people love, some don’t. We have options for all tastes.</p>
 
     <div class="carousel">
-      <div id="cards-2" class="cards" onscroll="handlePosition('cards-2')">
+      <div id="cards-2" class="cards">
 
         <div class="cards-2 card">
           <img class="inactive-icon" src="../images/icons/pork/inactive.svg" alt="pork inactive" />
@@ -124,6 +124,10 @@
       broth: '',
       meat: '',
     }
+
+    document.getElementById('btn-order').onclick = scrollToSession
+    document.getElementById('cards-1').onscroll = () => handlePosition('cards-1')
+    document.getElementById('cards-2').onscroll = () => handlePosition('cards-2')
 
     function submitOrder() {
       window.location.href = `success.html?broth=${selection.broth.toLowerCase().replace(' ', '_')}&meat=${selection.meat.toLowerCase().replace(' ', '_')}`

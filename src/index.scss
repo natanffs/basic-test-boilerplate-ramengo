@@ -36,6 +36,24 @@ button {
 	padding: 20px 16px;
 	cursor: pointer;
 
+	letter-spacing: 1.78px;
+
+	&:after {
+		height: 1rem;
+		width: 1.25rem;
+		content: '';
+		-webkit-mask: url(../images/arrow-right.svg) no-repeat 50% 50%;
+		mask: url(../images/arrow-right.svg) no-repeat 50% 50%;
+		-webkit-mask-size: cover;
+		mask-size: cover;
+
+		background-color: var(--white);
+	}
+
+	&:not([disabled]):after {
+		background-color: var(--yellow);
+	}
+
 	&:not([disabled]):hover {
 		background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0 0);
 	}
@@ -332,12 +350,6 @@ button {
 			@media (min-width: 846px) {
 				display: flex;
 			}
-
-			&:after {
-				content: '\1F862';
-				font-size: 15px;
-				color: var(--yellow);
-			}
 		}
 	}
 }
@@ -519,11 +531,6 @@ button {
 			background-color: var(--gray);
 		}
 
-		&:after {
-			content: '\1F862';
-			font-size: 15px;
-		}
-
 		&:enabled:after {
 			color: var(--yellow);
 		}
@@ -585,12 +592,6 @@ button {
 		text-align: left;
 		font-size: 14px;
 		letter-spacing: 1px;
-
-		&:after {
-			content: '\1F862';
-			font-size: 15px;
-			color: var(--yellow);
-		}
 	}
 }
 
@@ -630,7 +631,7 @@ button {
 		border-right-color: var(--red);
 		animation: spinner-d3wgkg 1.2s infinite linear;
 	}
-	
+
 	@keyframes spinner-d3wgkg {
 		to {
 			transform: rotate(1turn);

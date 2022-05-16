@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./index.scss" />
+  <link rel="stylesheet" href="index.scss" />
   <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png">
@@ -37,7 +37,7 @@
       <h2 id="japanese-text">どもありがとうございます。</h2>
       <h2 id="order-message-title">Your order is being prepared</h2>
       <p>Hold on, when you least expect you will be eating your rámen. </p>
-      <button type="button" id="btn-order" onclick="backToHome()">place new order</button>
+      <button type="button" id="btn-order">place new order</button>
     </div>
   </div>
 
@@ -72,7 +72,7 @@
         })
     }
 
-    function backToHome() {
+    document.getElementById('btn-order').onclick = function () {
       window.location.href = 'index.html'
       return false
     }
