@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>Front End Test - Ramen GO</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./index.scss" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="../images/favicon/site.webmanifest">
+</head>
+
+<body>
+  <div class="content-wrapper">
+    <header class="header success-header">
+      <p class="logo success-logo">ramenGO!</p>
+
+      <div class="header-content success-header-content">
+        <div id="success-illustration">
+        </div>
+        <div class="success-header-text">
+          <p id="success-title" hidden>Your Order:</p>
+          <p id="order-name"></p>
+        </div>
+      </div>
+    </header>
+
+    <div id="success-content">
+      <img src="../images/guy.png" alt="Desenho de uma pessoa agradecida">
+      <h2 id="japanese-text">どもありがとうございます。</h2>
+      <h2 id="order-message-title">Your order is being prepared</h2>
+      <p>Hold on, when you least expect you will be eating your rámen. </p>
+      <button type="button" id="btn-order" onclick="backToHome()">place new order</button>
+    </div>
+  </div>
+
+  <div id="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <script>
+    const params = (new URL(document.location)).searchParams
+
+    if (params) {
+      const meat = params.get('meat')
+      const broth = params.get('broth')
+
+      fetch(`https://front-br-challenges.web.app/api/v1/ramen-go/?meat=${meat}&broth=${broth}`)
+        .then(res => res.json())
+        .then(res => {
+          console.log(res.data)
+          if (res.data) {
+
+            const illustration = document.getElementById('success-illustration')
+            const image = document.createElement('img')
+
+            image.setAttribute('src', res.data.image)
+            image.setAttribute('alt', 'Imagem do prato')
+            image.setAttribute('id', 'order-image')
+            if (meat === 'yasai_vegetarian')
+              image.setAttribute('class', 'yasai-size-fix')
+            illustration.appendChild(image)
+
+            document.getElementById('order-name').innerText = res.data.name
+            document.getElementById('success-title').hidden = false
+
+            document.getElementById('loading').style.display = 'none'
+          }
+        })
+    }
+
+    function backToHome() {
+      window.location.href = 'index.html'
+      return false
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>Front End Test - Ramen GO</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./index.scss" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="../images/favicon/site.webmanifest">
+</head>
+
+<body>
+  <header class="header">
+    <p class="logo">ramenGO!</p>
+
+    <div class="header-content">
+      <div id="illustration">
+        <div id="background-circle">
+          <img id="yellow-balloon" src="../images/header/balao-amarelo.png" alt="balão amarelo" />
+          <img id="blue-balloon" src="../images/header/balao-azul.png" alt="balão azul" />
+        </div>
+        <img id="delivery-girl" src="../images/header/entregadora.png" alt="delivery girl" />
+      </div>
+      <div id="header-text-container">
+        <div id="cta-container">
+          <p id="katakana">ラーメン</p>
+          <p id="go">GO!</p>
+        </div>
+        <p class="description">
+          Enjoy a good ramen in the comfort of your house. Create your own ramen and choose your favorite flavour
+          combination!
+        </p>
+        <button type="button" id="btn-order" onclick="scrollToSession()">order now</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="main-content">
+    <h2 id="broth-session-title">First things first: select your favorite broth.</h2>
+    <p class="session-description">It will give the whole flavor on your ramen soup. </p>
+
+    <div class="carousel">
+      <div id="cards-1" class="cards" onscroll="handlePosition('cards-1')">
+
+        <div class="cards-1 card" onclick="">
+          <img class="inactive-icon" src="../images/icons/salt/inactive.svg" alt="salt inactive" />
+          <img class="active-icon" src="../images/icons/salt/active.svg" alt="salt active">
+          <p class="item-name">Salt</p>
+          <p class="item-description">Simple like the seawater, nothing more</p>
+          <p class="item-price">US$ 10</p>
+        </div>
+
+        <div class="cards-1 card">
+          <img class="inactive-icon" src="../images/icons/shoyu/inactive.svg" alt="shoyu inactive" />
+          <img class="active-icon" src="../images/icons/shoyu/active.svg" alt="shoyu inactive" />
+          <p class="item-name">Shoyu</p>
+          <p class="item-description">The good old and traditional soy sauce</p>
+          <p class="item-price">US$ 10</p>
+        </div>
+
+        <div class="cards-1 card">
+          <img class="inactive-icon" src="../images/icons/miso/inactive.svg" alt="miso inactive" />
+          <img class="active-icon" src="../images/icons/miso/active.svg" alt="miso inactive" />
+          <p class="item-name">Miso</p>
+          <p class="item-description">Paste made of fermented soybeans</p>
+          <p class="item-price">US$ 12</p>
+        </div>
+
+      </div>
+      <div class="indicator">
+        <span id="cards-1-indicator-1" class="item-indicator selected"></span>
+        <span id="cards-1-indicator-2" class="item-indicator"></span>
+        <span id="cards-1-indicator-3" class="item-indicator"></span>
+      </div>
+    </div>
+
+    <h2 id="meat-session-title">It’s time to choose (or not) your meat!</h2>
+    <p class="session-description">Some people love, some don’t. We have options for all tastes.</p>
+
+    <div class="carousel">
+      <div id="cards-2" class="cards" onscroll="handlePosition('cards-2')">
+
+        <div class="cards-2 card">
+          <img class="inactive-icon" src="../images/icons/pork/inactive.svg" alt="pork inactive" />
+          <img class="active-icon" src="../images/icons/pork/active.svg" alt="pork inactive" />
+          <p class="item-name">Chasu</p>
+          <p class="item-description">A sliced flavourful pork meat with a selection of season vegetables.</p>
+          <p class="item-price">US$ 10</p>
+        </div>
+
+        <div class="cards-2 card">
+          <img class="inactive-icon" src="../images/icons/yasai/inactive.svg" alt="yasai inactive" />
+          <img class="active-icon" src="../images/icons/yasai/active.svg" alt="yasai inactive" />
+          <p class="item-name">Yasai Vegetarian</p>
+          <p class="item-description">A delicious vegetarian lamen with a selection of season vegetables.</p>
+          <p class="item-price">US$ 10</p>
+        </div>
+
+        <div class="cards-2 card">
+          <img class="inactive-icon" src="../images/icons/chicken/inactive.svg" alt="chicken inactive" />
+          <img class="active-icon" src="../images/icons/chicken/active.svg" alt="chicken inactive" />
+          <p class="item-name">Karaague</p>
+          <p class="item-description">Three units of fried chicken, moyashi, ajitama egg and other vegetables.</p>
+          <p class="item-price">US$ 12</p>
+        </div>
+
+      </div>
+      <div class="indicator">
+        <span id="cards-2-indicator-1" class="item-indicator selected"></span>
+        <span id="cards-2-indicator-2" class="item-indicator"></span>
+        <span id="cards-2-indicator-3" class="item-indicator"></span>
+      </div>
+
+      <button type="button" id="btn-place-order" disabled>place my order</button>
+    </div>
+  </div>
+
+  <script>
+    const selection = {
+      broth: '',
+      meat: '',
+    }
+
+    function submitOrder() {
+      window.location.href = `success.html?broth=${selection.broth.toLowerCase().replace(' ', '_')}&meat=${selection.meat.toLowerCase().replace(' ', '_')}`
+      return false
+    }
+
+    function scrollToSession() {
+      let destiny
+
+      if (selection.broth !== '') {
+        destiny = document.getElementById('meat-session-title')
+      } else {
+        destiny = document.getElementById('broth-session-title')
+      }
+
+      destiny.scrollIntoView({ behavior: 'smooth' })
+    }
+
+    function checkSelection() {
+      scrollToSession()
+
+      if (selection.broth !== '' && selection.meat !== '') {
+        console.log(selection)
+        const btn = document.getElementById('btn-place-order')
+        btn.disabled = false
+        btn.onclick = submitOrder
+      }
+    }
+
+    //session 1 cards behaviour
+    const cards1 = document.querySelectorAll('.cards-1')
+
+    cards1[0].addEventListener('click', () => {
+      cards1[0].classList.add('selected')
+      cards1[1].classList.remove('selected')
+      cards1[2].classList.remove('selected')
+
+      selection.broth = cards1[0].querySelector('.item-name').textContent
+
+      document.getElementById('cards-1').scroll({ left: 0, behavior: 'smooth' })
+      checkSelection()
+    })
+
+    cards1[1].addEventListener('click', () => {
+      cards1[1].classList.add('selected')
+      cards1[0].classList.remove('selected')
+      cards1[2].classList.remove('selected')
+
+      const element = document.getElementById('cards-1')
+      const width = element.scrollWidth - document.documentElement.clientWidth
+
+      selection.broth = cards1[1].querySelector('.item-name').textContent
+
+      element.scroll({ left: width / 2, behavior: 'smooth' })
+      checkSelection()
+    })
+
+    cards1[2].addEventListener('click', () => {
+      cards1[2].classList.add('selected')
+      cards1[1].classList.remove('selected')
+      cards1[0].classList.remove('selected')
+
+      const element = document.getElementById('cards-1')
+      const width = element.scrollWidth - document.documentElement.clientWidth
+
+      selection.broth = cards1[2].querySelector('.item-name').textContent
+
+      element.scroll({ left: width, behavior: 'smooth' })
+      checkSelection()
+    })
+
+    //session 2 cards behaviour
+    const cards2 = document.querySelectorAll('.cards-2')
+
+    cards2[0].addEventListener('click', () => {
+      cards2[0].classList.add('selected')
+      cards2[1].classList.remove('selected')
+      cards2[2].classList.remove('selected')
+
+      selection.meat = cards2[0].querySelector('.item-name').textContent
+
+      document.getElementById('cards-2').scroll({ left: 0, behavior: 'smooth' })
+      checkSelection()
+    })
+
+    cards2[1].addEventListener('click', () => {
+      cards2[1].classList.add('selected')
+      cards2[0].classList.remove('selected')
+      cards2[2].classList.remove('selected')
+
+      const element = document.getElementById('cards-2')
+      const width = element.scrollWidth - document.documentElement.clientWidth
+
+      selection.meat = cards2[1].querySelector('.item-name').textContent
+
+      element.scroll({ left: width / 2, behavior: 'smooth' })
+      checkSelection()
+    })
+
+    cards2[2].addEventListener('click', () => {
+      cards2[2].classList.add('selected')
+      cards2[1].classList.remove('selected')
+      cards2[0].classList.remove('selected')
+
+      const element = document.getElementById('cards-2')
+      const width = element.scrollWidth - document.documentElement.clientWidth
+
+      selection.meat = cards2[2].querySelector('.item-name').textContent
+
+      element.scroll({ left: width, behavior: 'smooth' })
+      checkSelection()
+    })
+
+    function handlePosition(id) {
+      const cardsElement = document.getElementById(id)
+      const winScroll = cardsElement.scrollLeft
+      const width = cardsElement.scrollWidth - document.documentElement.clientWidth
+      const scrolled = Math.round((winScroll / width) * 100)
+
+      if (scrolled <= 35.33) {
+        document.getElementById(id + '-indicator-1').classList.add('selected')
+        document.getElementById(id + '-indicator-2').classList.remove('selected')
+        document.getElementById(id + '-indicator-3').classList.remove('selected')
+      } else if (scrolled <= 88.32) {
+        document.getElementById(id + '-indicator-2').classList.add('selected')
+        document.getElementById(id + '-indicator-1').classList.remove('selected')
+        document.getElementById(id + '-indicator-3').classList.remove('selected')
+      } else {
+        document.getElementById(id + '-indicator-3').classList.add('selected')
+        document.getElementById(id + '-indicator-1').classList.remove('selected')
+        document.getElementById(id + '-indicator-2').classList.remove('selected')
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -2,10 +2,9 @@
   "name": "front-end-test-2",
   "version": "1.0.0",
   "description": "Simple Parcel Sandbox",
-  "main": "index.html",
   "scripts": {
-    "start": "parcel index.html --open",
-    "build": "parcel build index.html success.html",
+    "start": "parcel serve ./src/*.html",
+    "build": "parcel build ./src/*.html",
     "deploy": "yarn build && surge"
   },
   "dependencies": {
