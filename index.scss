@@ -25,7 +25,8 @@ body {
 	overflow-x: hidden;
 }
 
-p, h2 {
+p,
+h2 {
 	cursor: default;
 }
 
@@ -74,11 +75,11 @@ button {
 				font-size: 1.25rem;
 				color: var(--white);
 			}
-			
+
 			#order-name {
 				font-size: 1.5rem;
 				color: var(--yellow);
-				
+
 				margin-top: 16px;
 				margin-bottom: 30px;
 				line-height: 32px;
@@ -584,5 +585,34 @@ button {
 	@media (min-width: 846px) {
 		display: flex;
 		flex-direction: row;
+	}
+}
+
+#loading {
+	width: 50vw;
+	height: 100vh;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.spinner {
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		border: 9px solid;
+		border-color: #e0dbbf;
+		border-right-color: #ff4e42;
+		animation: spinner-d3wgkg 1.2s infinite linear;
+	}
+	
+	@keyframes spinner-d3wgkg {
+		to {
+			transform: rotate(1turn);
+		}
 	}
 }

@@ -18,7 +18,7 @@
         <div id="success-illustration">
         </div>
         <div class="success-header-text">
-          <p id="success-title">Your Order:</p>
+          <p id="success-title" hidden>Your Order:</p>
           <p id="order-name"></p>
         </div>
       </div>
@@ -31,6 +31,10 @@
       <p>Hold on, when you least expect you will be eating your rámen. </p>
       <button type="button" id="btn-order" onclick="backToHome()">place new order</button>
     </div>
+  </div>
+
+  <div id="loading">
+    <div class="spinner"></div>
   </div>
 
   <script>
@@ -55,6 +59,9 @@
             illustration.appendChild(image)
 
             document.getElementById('order-name').innerText = res.data.name
+            document.getElementById('success-title').hidden = false
+
+            document.getElementById('loading').style.display = 'none'
           }
         })
     }
