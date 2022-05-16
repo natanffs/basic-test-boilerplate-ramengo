@@ -10,8 +10,8 @@
 </head>
 
 <body>
-  <div id="header">
-    <p id="logo">ramenGO!</p>
+  <header class="header">
+    <p class="logo">ramenGO!</p>
 
     <div class="header-content">
       <div id="illustration">
@@ -33,10 +33,10 @@
         <button type="button" id="btn-order" onclick="scrollToSession()">order now</button>
       </div>
     </div>
-  </div>
+  </header>
 
   <div id="main-content">
-    <h2  id="broth-session-title">First things first: select your favorite broth.</h2>
+    <h2 id="broth-session-title">First things first: select your favorite broth.</h2>
     <p class="session-description">It will give the whole flavor on your ramen soup. </p>
 
     <div class="carousel">
@@ -122,12 +122,10 @@
     }
 
     function submitOrder() {
-      fetch(`https://front-br-challenges.web.app/api/v1/ramen-go/?meat=${selection.meat.toLowerCase().replace(' ', '_')}&broth=${selection.broth.toLowerCase().replace(' ', '_')}`)
-        .then(res => res.json())
-        .then(res => {
-          console.log(res.data)
-        })
+      window.location.href = `success.html?broth=${selection.broth.toLowerCase().replace(' ', '_')}&meat=${selection.meat.toLowerCase().replace(' ', '_')}`
+      return false
     }
+
     function scrollToSession() {
       let destiny
 
