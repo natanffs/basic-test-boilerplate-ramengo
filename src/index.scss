@@ -113,7 +113,7 @@ button {
 		}
 
 		#success-illustration {
-			margin-top: -20px;
+			margin-top: 30px;
 			margin-bottom: 0px;
 			padding: 0;
 
@@ -121,14 +121,23 @@ button {
 			justify-content: center;
 			align-items: center;
 
+			@media (min-width: 846px) {
+				margin-top: -20px;
+			}
+
 			#order-image {
 				width: 100%;
 				height: auto;
 				width: auto;
 
 				&.yasai-size-fix {
-					margin-top: -40px;
-					margin-bottom: -40px;
+					margin-top: -50px;
+					margin-bottom: -50px;
+				}
+
+				&.karaague-size-fix {
+					margin-top: 20px;
+					margin-bottom: -10px;
 				}
 			}
 		}
@@ -597,8 +606,8 @@ button {
 }
 
 #loading {
-	width: 50vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 
 	position: absolute;
 	top: 0;
@@ -607,6 +616,10 @@ button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	@media (min-width: 846px) {
+		width: 50vw;
+	}
 
 	.spinner {
 		width: 56px;

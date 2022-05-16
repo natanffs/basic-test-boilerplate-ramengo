@@ -26,6 +26,10 @@
           <p id="order-name"></p>
         </div>
       </div>
+
+      <div id="loading">
+        <div class="spinner"></div>
+      </div>
     </header>
 
     <div id="success-content">
@@ -35,10 +39,6 @@
       <p>Hold on, when you least expect you will be eating your rámen. </p>
       <button type="button" id="btn-order" onclick="backToHome()">place new order</button>
     </div>
-  </div>
-
-  <div id="loading">
-    <div class="spinner"></div>
   </div>
 
   <script>
@@ -60,8 +60,8 @@
             image.setAttribute('src', res.data.image)
             image.setAttribute('alt', 'Imagem do prato')
             image.setAttribute('id', 'order-image')
-            if (meat === 'yasai_vegetarian')
-              image.setAttribute('class', 'yasai-size-fix')
+            meat !== 'chasu' &&
+              image.setAttribute('class', meat === 'karaague' ? 'karaague-size-fix' : 'yasai-size-fix')
             illustration.appendChild(image)
 
             document.getElementById('order-name').innerText = res.data.name
