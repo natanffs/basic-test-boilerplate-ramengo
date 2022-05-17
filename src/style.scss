@@ -69,13 +69,13 @@ button {
 
 	padding: 20px 0 66px 0;
 
-	background: url('../images/header/background-pattern.png') repeat;
+	background: url('../images/header/webp/background-pattern.webp') repeat;
 	background-size: contain;
 
 	position: relative;
 
 	&.success-header {
-		background: url('../images/pattern-azul.png') repeat;
+		background: url('../images/header/webp/pattern-azul.webp') repeat;
 		background-size: contain;
 
 		.success-header-text {
