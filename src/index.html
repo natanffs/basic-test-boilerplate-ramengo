@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Teste prático Front End developer - Natan Sousa">
-  <link rel="stylesheet" href="index.scss" />
+  <link rel="stylesheet" href="style.scss" />
   <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png">
@@ -71,10 +71,7 @@
         </div>
 
       </div>
-      <div class="indicator">
-        <span id="cards-1-indicator-1" class="item-indicator selected"></span>
-        <span id="cards-1-indicator-2" class="item-indicator"></span>
-        <span id="cards-1-indicator-3" class="item-indicator"></span>
+      <div id="indicator-1" class="indicator">
       </div>
     </div>
 
@@ -109,159 +106,14 @@
         </div>
 
       </div>
-      <div class="indicator">
-        <span id="cards-2-indicator-1" class="item-indicator selected"></span>
-        <span id="cards-2-indicator-2" class="item-indicator"></span>
-        <span id="cards-2-indicator-3" class="item-indicator"></span>
+      <div id="indicator-2" class="indicator">
       </div>
 
       <button type="button" id="btn-place-order" disabled>place my order</button>
     </div>
   </div>
 
-  <script>
-    const selection = {
-      broth: '',
-      meat: '',
-    }
-
-    document.getElementById('btn-order').onclick = scrollToSession
-    document.getElementById('cards-1').onscroll = () => handlePosition('cards-1')
-    document.getElementById('cards-2').onscroll = () => handlePosition('cards-2')
-
-    function submitOrder() {
-      window.location.href = `success.html?broth=${selection.broth.toLowerCase().replace(' ', '_')}&meat=${selection.meat.toLowerCase().replace(' ', '_')}`
-      return false
-    }
-
-    function scrollToSession() {
-      let destiny
-
-      if (selection.broth !== '') {
-        destiny = document.getElementById('meat-session-title')
-      } else {
-        destiny = document.getElementById('broth-session-title')
-      }
-
-      destiny.scrollIntoView({ behavior: 'smooth' })
-    }
-
-    function checkSelection() {
-      scrollToSession()
-
-      if (selection.broth !== '' && selection.meat !== '') {
-        console.log(selection)
-        const btn = document.getElementById('btn-place-order')
-        btn.disabled = false
-        btn.onclick = submitOrder
-      }
-    }
-
-    //session 1 cards behaviour
-    const cards1 = document.querySelectorAll('.cards-1')
-
-    cards1[0].addEventListener('click', () => {
-      cards1[0].classList.add('selected')
-      cards1[1].classList.remove('selected')
-      cards1[2].classList.remove('selected')
-
-      selection.broth = cards1[0].querySelector('.item-name').textContent
-
-      document.getElementById('cards-1').scroll({ left: 0, behavior: 'smooth' })
-      checkSelection()
-    })
-
-    cards1[1].addEventListener('click', () => {
-      cards1[1].classList.add('selected')
-      cards1[0].classList.remove('selected')
-      cards1[2].classList.remove('selected')
-
-      const element = document.getElementById('cards-1')
-      const width = element.scrollWidth - document.documentElement.clientWidth
-
-      selection.broth = cards1[1].querySelector('.item-name').textContent
-
-      element.scroll({ left: width / 2, behavior: 'smooth' })
-      checkSelection()
-    })
-
-    cards1[2].addEventListener('click', () => {
-      cards1[2].classList.add('selected')
-      cards1[1].classList.remove('selected')
-      cards1[0].classList.remove('selected')
-
-      const element = document.getElementById('cards-1')
-      const width = element.scrollWidth - document.documentElement.clientWidth
-
-      selection.broth = cards1[2].querySelector('.item-name').textContent
-
-      element.scroll({ left: width, behavior: 'smooth' })
-      checkSelection()
-    })
-
-    //session 2 cards behaviour
-    const cards2 = document.querySelectorAll('.cards-2')
-
-    cards2[0].addEventListener('click', () => {
-      cards2[0].classList.add('selected')
-      cards2[1].classList.remove('selected')
-      cards2[2].classList.remove('selected')
-
-      selection.meat = cards2[0].querySelector('.item-name').textContent
-
-      document.getElementById('cards-2').scroll({ left: 0, behavior: 'smooth' })
-      checkSelection()
-    })
-
-    cards2[1].addEventListener('click', () => {
-      cards2[1].classList.add('selected')
-      cards2[0].classList.remove('selected')
-      cards2[2].classList.remove('selected')
-
-      const element = document.getElementById('cards-2')
-      const width = element.scrollWidth - document.documentElement.clientWidth
-
-      selection.meat = cards2[1].querySelector('.item-name').textContent
-
-      element.scroll({ left: width / 2, behavior: 'smooth' })
-      checkSelection()
-    })
-
-    cards2[2].addEventListener('click', () => {
-      cards2[2].classList.add('selected')
-      cards2[1].classList.remove('selected')
-      cards2[0].classList.remove('selected')
-
-      const element = document.getElementById('cards-2')
-      const width = element.scrollWidth - document.documentElement.clientWidth
-
-      selection.meat = cards2[2].querySelector('.item-name').textContent
-
-      element.scroll({ left: width, behavior: 'smooth' })
-      checkSelection()
-    })
-
-    function handlePosition(id) {
-      const cardsElement = document.getElementById(id)
-      const winScroll = cardsElement.scrollLeft
-      const width = cardsElement.scrollWidth - document.documentElement.clientWidth
-      const scrolled = Math.round((winScroll / width) * 100)
-
-      if (scrolled <= 35.33) {
-        document.getElementById(id + '-indicator-1').classList.add('selected')
-        document.getElementById(id + '-indicator-2').classList.remove('selected')
-        document.getElementById(id + '-indicator-3').classList.remove('selected')
-      } else if (scrolled <= 88.32) {
-        document.getElementById(id + '-indicator-2').classList.add('selected')
-        document.getElementById(id + '-indicator-1').classList.remove('selected')
-        document.getElementById(id + '-indicator-3').classList.remove('selected')
-      } else {
-        document.getElementById(id + '-indicator-3').classList.add('selected')
-        document.getElementById(id + '-indicator-1').classList.remove('selected')
-        document.getElementById(id + '-indicator-2').classList.remove('selected')
-      }
-    }
-  </script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>

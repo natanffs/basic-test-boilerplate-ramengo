@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Simple Parcel Sandbox",
   "scripts": {
-    "start": "parcel serve ./src/*.html",
+    "start": "parcel serve ./src/index.html",
     "build": "rimraf dist && parcel build ./src/*.html ./src/index.scss",
     "deploy": "yarn build --global index && surge dist"
   },
